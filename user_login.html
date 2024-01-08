@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>User Login</title>
+</head>
+<body>
+    <header>
+        <div class="dashboard">
+            <div class="navbar">
+                <button class="back-button" onclick="window.location.href='index.html'">Back</button>
+                <h1>User Login</h1>
+            </div>
+        </div>
+    </header>
+    
+    <center>
+    <div class="white-box">
+          <div class="login-container">
+        <form id="userLoginForm">
+            
+            <label for="userId">Select User ID:</label>
+            <select id="userId" required>
+            </select>
+
+            <label for="amount">Enter Amount to Subtract:</label>
+            <input type="number" id="amount" required>
+            <button id="SubtractBtn" type="submit" onclick='subtractAmount()'>Submit</button>
+        </form>
+    </div>
+
+    </div>  
+</center>
+    <script src="user_login.js"></script>
+
+</body>
+</html>
