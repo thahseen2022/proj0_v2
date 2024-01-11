@@ -1,11 +1,10 @@
 // user_login.js
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Fetch the list of User IDs when the page loads
     fetchUserIds();
 
     // Add event listener for the userLoginForm submission
-    document.getElementById('userLoginForm').addEventListener('submit', function(event) {
+    document.getElementById('SubtractBtn').addEventListener('click', function (event) {
         event.preventDefault();
 
         // Get the selected User ID and entered amount
@@ -18,15 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-       
+        subtractAmount();
     });
 });
 
-document.getElementById('SubtractBtn').addEventListener('click', function(event) {
-    event.preventDefault();
-    //subtractAmount();
-    
-});
+// Rest of your JavaScript code remains the same...
+
+
 
 // Function to fetch the list of User IDs
 function fetchUserIds() {
@@ -77,7 +74,7 @@ function subtractAmount() {
         if (result.status === "success") {
             alert('Amount subtracted successfully.');
         } else {
-            alert('Error subtracting amount:', result.message);
+            alert('Error subtracting amount: Please check as amount to be returned is greater than the remaining amount', result.message);
         }
     })
     .catch(error => console.error('Error:', error));

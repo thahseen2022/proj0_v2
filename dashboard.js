@@ -106,6 +106,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// Fetch user IDs when the page loads
+function fetchUserIds() {
+    fetch('data.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                // Call a function to update the dropdown with the fetched data
+                updateDropdown(data.data);
+            } else {
+                console.error('Error fetching user IDs:', data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to update the dropdown with the fetched user IDs
+function updateDropdown(data) {
+    // Get the dropdown element
+    var dropdown = document.getElementById('viewStatementUserId');
+
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Iterate over the data and append options to the dropdown
+    data.forEach(row => {
+        var newOption = document.createElement('option');
+        newOption.value = row.User_ID;
+        newOption.text = row.User_ID;
+        dropdown.appendChild(newOption);
+    }); 
+}
+
 // Event listener for the "Add User" button
 document.getElementById('addUserBtn').addEventListener('click', function(event) {
     event.preventDefault();
@@ -119,6 +151,16 @@ document.getElementById('deleteUserConfirmBtn').addEventListener('click', functi
     deleteUser(userIdToDelete);
     openModal('deleteUserModal');
 });
+
+/*
+// Event listener for the "View Statement" button
+document.getElementById('viewStatementBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    openModal('viewStatementModal');
+
+    fetchUserIds();
+});
+*/
 
 
 // Function to open the delete user modal

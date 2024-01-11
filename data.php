@@ -1,6 +1,6 @@
 <?php
 // Connect to the database
-$conn = new mysqli("127.0.0.1", "root", "", "all_data");
+$conn = new mysqli("127.0.0.1", "root", "", "employeecollection");
 
 // Check the connection
 if ($conn->connect_error) {
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newTotalAmount = floatval($_POST["newTotalAmount"]);
 
         // Insert new user into the database
-        $sql = "INSERT INTO all_data (Username, Remaining_Amount, Total_Amount) VALUES ('$newUsername', $newAmountRemaining, $newTotalAmount)";
+        $sql = "INSERT INTO user_main (Username, Remaining_Amount, Total_Amount) VALUES ('$newUsername', $newAmountRemaining, $newTotalAmount)";
         $result = $conn->query($sql);
 
         // Check if the insertion was successful
@@ -33,49 +33,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $deleteUserId = intval($_POST["userId"]);
 
         // Delete user from the database
-        $sql = "DELETE FROM all_data WHERE User_ID = $deleteUserId";
+        $sql = "DELETE FROM user_main WHERE User_ID = $deleteUserId";
         $result = $conn->query($sql);
 
         // Check if the deletion was successful
         if ($result) {
             echo json_encode(["status" => "success"]);
         } else {
-          echo json_encode(["status" => "error", "message" => "Error deleting user"]);
+            echo json_encode(["status" => "error", "message" => "Error deleting user"]);
         }
     } elseif ($action == "subtractAmount") {
         // Validate and sanitize input data
         $userId = intval($_POST["userId"]);
         $amountToSubtract = floatval($_POST["amount"]);
 
+
+        
         // Fetch existing remaining amount
-        $sql = "SELECT Remaining_Amount FROM all_data WHERE User_ID = $userId";
+        $sql = "SELECT Remaining_Amount FROM user_main WHERE User_ID = $userId";
         $result = $conn->query($sql);
 
         if ($result && $row = $result->fetch_assoc()) {
             $currentRemainingAmount = floatval($row["Remaining_Amount"]);
 
-            // Calculate new remaining amount after subtraction
-            $newRemainingAmount = $currentRemainingAmount - $amountToSubtract;
-
-            // Update remaining amount in the database
-            $sql = "UPDATE all_data SET Remaining_Amount = $newRemainingAmount WHERE User_ID = $userId";
-            $result = $conn->query($sql);
-
-            // Check if the update was successful
-            if ($result) {
-                echo json_encode(["status" => "success"]);
+            // Check if amount to subtract is greater than current remaining amount
+            if ($amountToSubtract > $currentRemainingAmount) {
+                http_response_code(400); // Bad Request
+                echo json_encode(["error" => "Amount to subtract is greater than current remaining amount"]);
             } else {
-                echo json_encode(["status" => "error", "message" => "Error updating remaining amount"]);
+                // Calculate new remaining amount after subtraction
+                $newRemainingAmount = $currentRemainingAmount - $amountToSubtract;
+
+                // Update remaining amount in the database
+                $sql = "UPDATE user_main SET Remaining_Amount = $newRemainingAmount WHERE User_ID = $userId";
+                $result = $conn->query($sql);
+
+                // Check if the update was successful
+                if ($result) {
+                    echo json_encode(["status" => "success"]);
+                } else {
+                    echo json_encode(["status" => "error", "message" => "Error updating remaining amount"]);
+                }
             }
         } else {
             echo json_encode(["status" => "error", "message" => "Error fetching current remaining amount"]);
         }
-    } else {
-        // Handle other data modification actions if needed
     }
 } else {
     // Fetch data from the database
-    $sql = "SELECT * FROM all_data";
+    $sql = "SELECT * FROM user_main";
     $result = $conn->query($sql);
 
     // Convert the result to an associative array

@@ -121,6 +121,14 @@ th {
     border: none; /* Remove the button border */
     cursor: pointer; /* Add a pointer cursor on hover */
 }
+#viewStatementBtn {
+    background-color: skyblue; /* Red background color */
+    color: black; /* White text color */
+    padding: 10px 20px; /* Padding around the text */
+    border: none; /* Remove the button border */
+    cursor: pointer;
+    margin-left: 10px; /* Add a pointer cursor on hover */
+}
 
 .back-button {
     background-color: #007bff; /* Blue background color */
