@@ -1,8 +1,8 @@
 ----Prerequisites----
 
->>XAMPP Server
->>TCPDF Extension
->>VS CODE (for editings)
+XAMPP Server
+TCPDF Extension
+VS CODE (for editings)
 
 
 ---update (22.01.2023)----
@@ -25,12 +25,16 @@ the server shall work
 ADDITIONAL REQUIREMENTS INCLUDE TCPDF - AN EXTENSION USED FOR CONVERTING IT TO A PDF REPORT under 'View statement' button in dashboard
 
 ----credentials----
+
+
 ADMIN LOGIN
-  username:admin
-  password:abc
+username:admin
+password:abc
+
+
 EMPLOYEE LOGIN
-  username:customer
-  password:0000
+username:customer
+password:0000
 
 ----end of update
 
