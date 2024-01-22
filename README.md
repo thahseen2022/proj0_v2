@@ -1,7 +1,7 @@
 ----Prerequisites----
 
-XAMPP Server
-TCPDF Extension
+XAMPP Server,
+TCPDF Extension,
 VS CODE (for editings)
 
 
@@ -26,14 +26,23 @@ ADDITIONAL REQUIREMENTS INCLUDE TCPDF - AN EXTENSION USED FOR CONVERTING IT TO A
 
 ----credentials----
 
-
+0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0
 ADMIN LOGIN
+
+
 username:admin
+
+
 password:abc
 
 
+0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0o0
 EMPLOYEE LOGIN
+
+
 username:customer
+
+
 password:0000
 
 ----end of update
