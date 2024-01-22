@@ -64,7 +64,9 @@
                 <br>
                 <br>
                 <button id="viewstatementbtn" onclick='viewStatement()'>View Statement</button>
-                <button onclick="window.print()" class="btn btn-primary">Print</button>
+                <button id="printPdfBtn" onclick="printPdf()">Print PDF</button>
+
+
             </form>
         </div>
     
@@ -78,13 +80,16 @@
     <table>
         <thead>
             <tr>
+    
                 <th>User ID</th>
                 <th>Username</th>
-                <th>Amount Remaining</th>
                 <th>Total Amount</th>
+                <th>Remaining Amount</th>
+                <th>Amount Credited</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Actions</th>
+           
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -93,6 +98,8 @@
     </table>
     
     <script src="viewstatement.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
     
 </body>
 </html>

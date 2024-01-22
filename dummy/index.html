@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffcccb, #d9a7c7, #b19cd9, #9eb9f3);
+        }
+
+        header {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        
+        nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to right, #007bff, #0056b3);
+        padding: 5px 0;
+        text-align: right;
+        z-index: 1000;
+        }
+        
+        nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 10px;
+        transition: all 0.3s ease-in-out;
+        background-color: transparent;
+        display: inline-block;
+        }
+
+        nav a:hover {
+        font-size: 1.1em;
+        border-bottom: 2px solid white;
+        padding-bottom: 8px;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .login-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background: #3498db;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+
+        .login-section h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .left-section {
+            margin-right: 20px;
+        }
+
+        .right-section {
+            margin-left: 20px;
+        }
+        footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="loan.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Our Team</a>
+            <a href="index.html">Login</a>
+        </nav>
+    </header>
+    <main>
+        <div class="left-section login-section">
+            <h2>Admin Login</h2>
+            <form id="adminForm">
+                <label for="adminUsername">Username:</label>
+                <input type="text" id="adminUsername" name="adminUsername" required>
+                <label for="adminPassword">Password:</label>
+                <input type="password" id="adminPassword" name="adminPassword" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div class="right-section login-section">
+            <h2>Customer Login</h2>
+            <form id="customerForm">
+                <label for="customerUsername">Username:</label>
+                <input type="text" id="customerUsername" name="customerUsername" required>
+                <label for="customerPassword">Password:</label>
+                <input type="password" id="customerPassword" name="customerPassword" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <br>
+    <br>
+    <br>
+    <br>
+  <footer>
+    <p>&copy; 2024 Lorem Ipsum Loaning Company. All rights reserved.</p>
+  </footer>
+</body>
+</html>

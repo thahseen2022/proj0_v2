@@ -1,4 +1,9 @@
 <?php
+
+//viewstatement.php
+session_start();
+
+
 // Connect to the database
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -37,6 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while ($row = $result->fetch_assoc()) {
                     $data[] = $row;
                 }
+
+
+                  // Set session data
+       
+                $_SESSION['viewstatement_data'] = $data;
 
                 // Output data as JSON
                 echo json_encode(["status" => "success", "data" => $data]);

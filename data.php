@@ -28,46 +28,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo json_encode(["status" => "error", "message" => "Error adding user"]);
         }
-    } elseif ($action == "deleteUser") {
-        // Validate and sanitize input data
-        $deleteUserId = intval($_POST["userId"]);
-
-        // Delete user from the database
-        $sql = "DELETE FROM user_main WHERE User_ID = $deleteUserId";
-        $result = $conn->query($sql);
-
-        // Check if the deletion was successful
-        if ($result) {
-            echo json_encode(["status" => "success"]);
-        } else {
-            echo json_encode(["status" => "error", "message" => "Error deleting user"]);
-        }
     } elseif ($action == "subtractAmount") {
         // Validate and sanitize input data
+        $customMessage = "Error going in action part in php";
+        error_log($customMessage);
+
+
         $userId = intval($_POST["userId"]);
         $amountToSubtract = floatval($_POST["amount"]);
 
-
-        
         // Fetch existing remaining amount
         $sql = "SELECT Remaining_Amount FROM user_main WHERE User_ID = $userId";
         $result = $conn->query($sql);
-
+        
         if ($result && $row = $result->fetch_assoc()) {
             $currentRemainingAmount = floatval($row["Remaining_Amount"]);
-
-            // Check if amount to subtract is greater than current remaining amount
-            if ($amountToSubtract > $currentRemainingAmount) {
-                http_response_code(400); // Bad Request
-                echo json_encode(["error" => "Amount to subtract is greater than current remaining amount"]);
+        
+            // Calculate new remaining amount after subtraction
+            $newRemainingAmount = $currentRemainingAmount - $amountToSubtract;
+        
+            if ($newRemainingAmount < 0) {
+                // Amount to subtract exceeds remaining amount
+                echo json_encode(["status" => "error", "message" => "Amount to subtract exceeds remaining amount"]);
             } else {
-                // Calculate new remaining amount after subtraction
-                $newRemainingAmount = $currentRemainingAmount - $amountToSubtract;
-
                 // Update remaining amount in the database
                 $sql = "UPDATE user_main SET Remaining_Amount = $newRemainingAmount WHERE User_ID = $userId";
                 $result = $conn->query($sql);
-
+        
                 // Check if the update was successful
                 if ($result) {
                     echo json_encode(["status" => "success"]);
@@ -78,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo json_encode(["status" => "error", "message" => "Error fetching current remaining amount"]);
         }
+        
+    } else {
+        // Handle other data modification actions if needed
     }
 } else {
     // Fetch data from the database

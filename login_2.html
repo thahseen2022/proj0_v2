@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login_2.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <div class="logo">
+                <img src="images/LOGO_RemoveBG.png" alt="Logo">
+              </div>
+
+            <a href="loan.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Contact Us</a>
+            
+            <a href="login_2.html">Login</a>
+        </nav>
+    </header>
+    <main>
+
+        <div class="container" id="container">
+            <div class="form-container ADMIN">
+                <form id="adminForm">
+                    <h1>Admin Sign in</h1>
+                    <br>
+                    
+                    <input type="text" id="adminUsername" name="adminUsername"  placeholder="Enter Admin Username" required>
+                    <br>
+                    <input type="password" id="adminPassword" name="adminPassword"  placeholder="Enter Password" required>
+                    <br>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div class="form-container EMPLOYEE">
+                <form id="customerForm">
+                    <h1>Employee</h1>
+                        <h1>Sign In</h1>
+                    <br>
+              
+
+                    <input type="text" id="customerUsername" name="customerUsername" placeholder="Enter Employee Username" required>
+                    <br>
+                    <input type="password" id="customerPassword" name="customerPassword" placeholder="Enter Password" required>
+                    <br>
+                    <input type="submit" value="Login">
+
+                </form>
+            </div>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Admin Login</h1>
+
+                        <br>
+                        <button class="hidden" id="login">← Sign in as Admin</button>
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>Employee Login</h1>
+
+                        <br>
+                        <button class="hidden" id="register">Sign in as Employee →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        
+        
+    </main>
+   
+        <script>
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+    const adminCredentials = {
+        username: "admin",
+        password: "abc"
+    };
+
+    const customerCredentials = {
+        username: "customer",
+        password: "0000"
+    };
+
+    const adminForm = document.getElementById("adminForm");
+    const customerForm = document.getElementById("customerForm");
+
+    if (adminForm) {
+        adminForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("adminUsername").value;
+            const password = document.getElementById("adminPassword").value;
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                alert("Admin login successful");
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Admin login failed");
+            }
+        });
+    }
+    
+    if (customerForm) {
+    customerForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        console.log("Customer form submitted"); // Add this line
+
+        const usernameElement = document.getElementById("customerUsername");
+        const passwordElement = document.getElementById("customerPassword");
+
+        if (usernameElement && passwordElement) {
+            console.log("Username and password elements found"); // Add this line
+
+            const username = usernameElement.value;
+            const password = passwordElement.value;
+
+            if (username === customerCredentials.username && password === customerCredentials.password) {
+                alert("Customer login successful");
+                window.location.href = "user_login.html";
+            } else {
+                alert("Customer login failed");
+            }
+        } else {
+            console.error("Username or password elements not found.");
+        }
+    });
+}
+
+
+});
+        </script>
+         
+     <footer>
+            <p>&copy; 2024 Lorem Ipsum Loaning Company. All rights reserved.</p>
+        </footer>
+    
+</body>
+
+</html>
